@@ -1,9 +1,11 @@
-// const pageLayout = () => {
 
-// }
-const titleLayout = async () =>{
 
+const titleLayout = () =>{
+  const h1 = document.createElement("h1")
+  h1.innerText = "Kitten Pic"
+  document.body.append(h1)
 }
+
 const kittenPic = async () => {
   const pic = await fetch("https://api.thecatapi.com/v1/images/search")
   const url = await pic.json()
@@ -15,17 +17,12 @@ const kittenPic = async () => {
   const picDiv = document.getElementById('picture')
   console.log(picDiv)
   picDiv.append(img)
-
 }
 
 
 
 
-
-
-
-
-
-
-
-window.onload = kittenPic, titleLayout
+window.onload = () => {
+  kittenPic();
+  titleLayout();
+}
