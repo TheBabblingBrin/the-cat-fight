@@ -19,10 +19,45 @@ const kittenPic = async () => {
   picDiv.append(img)
 }
 
+const divBox = async () => {
+  const upperDiv = document.createElement("div")
+  const scoreBar = document.createElement("div")
+  const upVote = document.createElement("button")
+  const downVote = document.createElement("button")
+  const voteButtons = document.createElement("div")
+  let score = 0
+  scoreBar.innerText = `Popularity Score: ${score}`
+  upVote.innerText = "Upvote"
+  downVote.innerText = "Downvote"
+  scoreBar.setAttribute("id", "scorebar")
+  upVote.setAttribute("id", "upvote")
+  downVote.setAttribute("id", "downvote")
+  voteButtons.append(upVote, downVote)
+  upperDiv.append(scoreBar, voteButtons)
+  document.body.append(upperDiv)
+
+  upperDiv.style.display = "flex"
+  upperDiv.style.flexDirection = "column"
+  scoreBar.style.textAlign = "center"
+
+
+  upVote.addEventListener("click", () => {
+    score++
+    scoreBar.innerText = `Popularity Score: ${score}`
+  })
+  downVote.addEventListener("click", () => {
+    score--
+    scoreBar.innerText = `Popularity Score: ${score}`
+  })
+}
 
 
 
-window.onload = () => {
-  kittenPic();
-  titleLayout();
+
+
+
+window.onload = async () => {
+  await titleLayout();
+  await kittenPic();
+  await divBox();
 }
