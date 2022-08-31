@@ -51,13 +51,54 @@ const divBox = async () => {
   })
 }
 
+const commentBar = () => {
+  const div = document.createElement('div')
+  const label = document.createElement('label')
+  const input = document.createElement('textarea')
+  const submit = document.createElement('button')
+  document.body.append(div)
+  div.setAttribute('id', 'comment-bar')
+  div.append(label, input, submit)
+  input.setAttribute('name', 'comment-input')
+  input.setAttribute('id', 'input')
+  input.setAttribute('placeholder', 'Add a comment...')
+  label.setAttribute('for', 'comment-input')
+  label.setAttribute('id', 'comment-label')
+  submit.setAttribute('id', 'submit')
+  label.innerText = 'Comment: ';
+  submit.innerText ='Submit'
+
+  submit.addEventListener('click', () =>{
+    const list = document.getElementById('comment-list')
+    const newItem = document.createElement('li');
+    const newComment = input.value
+    newItem.innerText = newComment
+    list.append(newItem)
+  })
+
+}
+
+
+const commentList = () =>{
+  const div = document.createElement('div');
+  document.body.append(div)
+  div.setAttribute('id', 'comment-box');
+  const list = document.createElement('ul');
+  list.setAttribute('id', 'comment-list')
+  div.append(list)
+
+
+}
+
 
 
 
 
 
 window.onload = async () => {
-  await titleLayout();
+        titleLayout();
   await kittenPic();
-  await divBox();
+        divBox();
+        commentBar();
+        commentList();
 }

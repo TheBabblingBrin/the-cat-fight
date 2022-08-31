@@ -8,6 +8,40 @@ body {
   align-items: center;
 }
 
+#comment-bar{
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  margin: 25px 0;
+  width: 320px;
+}
+
+#comment-box{
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  width: 80%;
+  height: 500px;
+  overflow-y: scroll;
+  max-width: 900px;
+}
+#comment-label{
+  align-self: center;
+}
+#comment-list{
+  max-width: 80%;
+  overflow-wrap: break-word;
+  list-style-type: none;
+
+}
+
+#comment-list li{
+  margin: 10px;
+}
+
+#input{
+  resize: none;
+}
 
 #picture {
   height: 300px;
@@ -24,7 +58,12 @@ body {
   margin: 10px 0px;
 }
 
-#upvote,
-#downvote {
+#submit {
+  height: 21px;
+  align-self: center;
+
+}
+
+button {
   margin: 0px 4px;
 }
