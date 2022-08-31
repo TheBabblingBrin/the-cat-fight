@@ -2,21 +2,28 @@
 
 const titleLayout = () =>{
   const h1 = document.createElement("h1")
-  h1.innerText = "Kitten Pic"
+  h1.innerText = "Catstagram"
   document.body.append(h1)
+  h1.setAttribute('id', 'title-text')
 }
 
 const kittenPic = async () => {
   const pic = await fetch("https://api.thecatapi.com/v1/images/search")
   const url = await pic.json()
-  const img = document.createElement('img')
+  const img = document.createElement('input')
   const div = document.createElement('div')
   div.setAttribute('id', 'picture')
   document.body.append(div)
+  img.type = 'image'
   img.src = url[0].url
   const picDiv = document.getElementById('picture')
   console.log(picDiv)
   picDiv.append(img)
+
+
+  img.addEventListener('click', () =>{
+    window.location.reload();
+})
 }
 
 const divBox = async () => {
@@ -34,6 +41,8 @@ const divBox = async () => {
   downVote.setAttribute("id", "downvote")
   voteButtons.append(upVote, downVote)
   upperDiv.append(scoreBar, voteButtons)
+  upperDiv.setAttribute('id', 'upper-div')
+  voteButtons.setAttribute('id', 'buttons')
   document.body.append(upperDiv)
 
   upperDiv.style.display = "flex"
@@ -65,7 +74,7 @@ const commentBar = () => {
   label.setAttribute('for', 'comment-input')
   label.setAttribute('id', 'comment-label')
   submit.setAttribute('id', 'submit')
-  label.innerText = 'Comment: ';
+  // label.innerText = 'Comment: ';
   submit.innerText ='Submit'
 
   submit.addEventListener('click', () =>{
