@@ -29,7 +29,6 @@ const leftkittenPic = async () => {
   img.type = 'image'
   img.src = url[0].url
   const picDiv = document.getElementById('picture-1')
-  // console.log(picDiv)
   picDiv.append(img)
 
 
@@ -74,7 +73,6 @@ const fight = () => {
     const fightdiv = document.createElement('div')
     fightdiv.setAttribute('id','fight-div')
     fightText.setAttribute('id', 'fight-text')
-    // const title = document.querySelector('h1')
     fightText.innerText = 'FIGHT!'
     document.body.append(fightdiv)
     fightdiv.append(fightText)
@@ -83,6 +81,7 @@ const fight = () => {
       let audio = document.createElement('audio')
       audio.controls = true;
       audio.autoplay = true;
+      audio.volume = .1;
 
 
       let source = document.createElement('source')
@@ -151,27 +150,40 @@ const music = () => {
       source.setAttribute('src','./SLOWER-TEMPO2019-12-11_-_Retro_Platforming_-_David_Fesliyan.mp3')
       source.setAttribute('type', 'audio/mpeg')
       audio.append(source)
-      audio.volume = .3;
+      audio.volume = .05;
       document.body.append(audio)
       audio.setAttribute('id', 'audio')
 
 })
 }
 
-
 const start = async () => {
-  const button = document.createElement('button')
+  const button = document.createElement('button' )
   button.innerText = 'START';
   button.setAttribute('class', 'start-button')
+  const title = document.getElementById('title-text')
+  console.log(title)
+  // title.style.visibility = 'hidden'
+
+
    document.body.append(button)
     button.addEventListener('click', async ()=> {
+      const sunBox = document.createElement('div')
+      const text = document.getElementById('title-text')
+      sunBox.setAttribute('id', 'sunbox')
+      document.body.append(sunBox)
+      text.style.animation = '3s linear .1s 1 normal both riseup'
+
      await leftkittenPic();
      await rightkittenPic();
           fight();
           music();
           divBox();
-          button.remove()
-
+          // animation: 3s linear 1.8s 1 normal both riseup ;
+          setTimeout(() => {
+            button.remove();
+            sunBox.remove()
+          }, 3000)
   })
 }
 
@@ -183,6 +195,7 @@ window.onload = async () => {
         titleLayout();
         theOctagon();
   await start();
+
 
 
 }

@@ -8,6 +8,7 @@ body {
   width: 100%;
   height: 100%;
   margin: 0 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -215,16 +216,28 @@ body {
   width: 100%;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  top: 30%;
 }
 #title-text{
   font-family: 'vapor';
+
   letter-spacing: 6px;
-  font-size: 40px;
+  font-size: 270px;
   color: rgb(251,176,59);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-
+  text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+  z-index: 3;
 }
-
+@keyframes riseup {
+  0% {
+    transform:s translateY(0) scale(1);
+  }
+  100% {
+    transform: translateY(-345px) scale(0.2);
+    height: 400px;
+    /* z-index: -1; */
+  }
+}
 #defender,
 #challenger{
   margin: 0px 4px;
@@ -245,23 +258,41 @@ body {
 }
 
 .start-button{
+  transform: translateY(0);
+  transition: all 2s ease-out;
   background-image: url(./sun.png);
   background-size:cover;
   background-color: transparent;
   border-radius: 300px;
-  
   border: 5px transparent;
   font-family: 'vapor';
   position: absolute;
-  top:40%;
-  bottom:60%;
+  top:39%;
+  bottom:61%;
   width: 400px;
   height: 400px;
-  text-align: flex-end;
+  text-align: center;
   letter-spacing: 6px;
-  font-size: 40px;
+  font-size: 30px;
   color: rgb(251,176,59);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+.start-button:focus{
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(500px) ;
+  transition: all 2s ease-out;
+  z-index: -4;
+}
+
+#sunbox{
+  background-image: url(./sunbox.png);
+  background-size: auto;
+  height: 374px;
+  width: 459px;
+  position: absolute;
+  bottom: 0;
+  z-index: 3;
 }
 #upper-div{
   display: flex;
