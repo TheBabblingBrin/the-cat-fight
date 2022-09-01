@@ -2,49 +2,114 @@
 
 const titleLayout = () =>{
   const h1 = document.createElement("h1")
-  h1.innerText = "Catstagram"
+  h1.innerText = "Cat Fight"
   document.body.append(h1)
   h1.setAttribute('id', 'title-text')
+}
+const theOctagon = () =>{
+  const div = document.createElement('div')
+  div.setAttribute('id', 'the-octagon')
+  document.body.append(div)
 }
 const fetchKitty = async () => {
   const pic = await fetch("https://api.thecatapi.com/v1/images/search")
   return pic
 }
-const kittenPic = async () => {
+
+
+const leftkittenPic = async () => {
   const pic = await fetchKitty();
   const url =  await pic.json()
   const img = document.createElement('input')
   const div = document.createElement('div')
-  div.setAttribute('id', 'picture')
-  document.body.append(div)
+  div.setAttribute('id', 'picture-1')
+  const octagon = document.getElementById('the-octagon')
+  octagon.append(div)
+  img.setAttribute('id', 'img-1')
   img.type = 'image'
   img.src = url[0].url
-  const picDiv = document.getElementById('picture')
+  const picDiv = document.getElementById('picture-1')
   // console.log(picDiv)
   picDiv.append(img)
 
 
-  img.addEventListener('click', async () =>{
-    const pic = await fetchKitty();
-    const url =  await pic.json();
-    img.src = url[0].url;
-})
+  img.addEventListener("click", () => {
+    const kitten = document.getElementById('picture-2')
+    kitten.remove()
+    rightkittenPic();
+  })
+}
+const rightkittenPic = async () => {
+  const pic = await fetchKitty();
+  const url =  await pic.json()
+  const img = document.createElement('input')
+  const div = document.createElement('div')
+  div.setAttribute('id', 'picture-2')
+  const octagon = document.getElementById('the-octagon')
+  octagon.append(div)
+  img.setAttribute('id', 'img-2')
+  img.type = 'image'
+  img.src = url[0].url
+  const picDiv = document.getElementById('picture-2')
+  // console.log(picDiv)
+  picDiv.append(img)
+
+
+  img.addEventListener("click", () => {
+    const kitten = document.getElementById('picture-2')
+    console.log()
+    const newChamp = document.getElementById('img-2')
+    const champ = document.getElementById('img-1')
+    champ.replaceWith(newChamp)
+    newChamp.setAttribute('id', 'img-1')
+    kitten.remove()
+    rightkittenPic();
+  })
 }
 
+const fight = () => {
+  const animated = document.getElementById('picture-1');
+  animated.addEventListener('animationend', ()=>{
+    const fightText = document.createElement('p')
+    const fightdiv = document.createElement('div')
+    fightdiv.setAttribute('id','fight-div')
+    fightText.setAttribute('id', 'fight-text')
+    // const title = document.querySelector('h1')
+    fightText.innerText = 'FIGHT!'
+    document.body.append(fightdiv)
+    fightdiv.append(fightText)
+    let fight = document.getElementById('fight-text')
+    fight.addEventListener('animationstart', ()=>{
+      let audio = document.createElement('audio')
+      audio.controls = true;
+      audio.autoplay = true;
+
+
+      let source = document.createElement('source')
+      source.setAttribute('src','http://soundfxcenter.com/video-games/mortal-kombat-2/8d82b5_Mortal_Kombat_2_Fight_Sound_Effect.mp3')
+      source.setAttribute('type', 'audio/mpeg')
+      audio.append(source)
+      document.body.append(audio)
+      audio.setAttribute('id', 'audio')
+
+
+    })
+  }
+  )
+}
 const divBox = async () => {
   const upperDiv = document.createElement("div")
   const scoreBar = document.createElement("div")
-  const upVote = document.createElement("button")
-  const downVote = document.createElement("button")
+  const defender = document.createElement("button")
+  const challenger = document.createElement("button")
   const voteButtons = document.createElement("div")
-  let score = 0
-  scoreBar.innerText = `Popularity Score: ${score}`
-  upVote.innerText = "Upvote"
-  downVote.innerText = "Downvote"
+  scoreBar.innerText = `Choose your champion!`
+  defender.innerText = "Defender"
+  challenger.innerText = "Challenger"
   scoreBar.setAttribute("id", "scorebar")
-  upVote.setAttribute("id", "upvote")
-  downVote.setAttribute("id", "downvote")
-  voteButtons.append(upVote, downVote)
+  defender.setAttribute("id", "defender")
+  challenger.setAttribute("id", "challenger")
+  voteButtons.append(defender, challenger)
   upperDiv.append(scoreBar, voteButtons)
   upperDiv.setAttribute('id', 'upper-div')
   voteButtons.setAttribute('id', 'buttons')
@@ -55,57 +120,60 @@ const divBox = async () => {
   scoreBar.style.textAlign = "center"
 
 
-  upVote.addEventListener("click", () => {
-    score++
-    scoreBar.innerText = `Popularity Score: ${score}`
+  defender.addEventListener("click", () => {
+    const kitten = document.getElementById('picture-2')
+    kitten.remove()
+    rightkittenPic();
   })
-  downVote.addEventListener("click", () => {
-    score--
-    scoreBar.innerText = `Popularity Score: ${score}`
-    score <= -10? window.alert("All kitties deserve love!"):null;
-  })
-}
-
-const commentBar = () => {
-  const div = document.createElement('div')
-  const label = document.createElement('label')
-  const input = document.createElement('textarea')
-  const submit = document.createElement('button')
-  document.body.append(div)
-  div.setAttribute('id', 'comment-bar')
-  div.append(label, input, submit)
-  input.setAttribute('name', 'comment-input')
-  input.setAttribute('id', 'input')
-  input.setAttribute('placeholder', 'Add a comment...')
-  label.setAttribute('for', 'comment-input')
-  label.setAttribute('id', 'comment-label')
-  submit.setAttribute('id', 'submit')
-  // label.innerText = 'Comment: ';
-  submit.innerText ='Submit'
-
-  submit.addEventListener('click', () =>{
-    const list = document.getElementById('comment-list')
-    const newItem = document.createElement('li');
-    const newComment = input.value
-    newItem.innerText = newComment
-    list.append(newItem)
-    input.value = ''
+  challenger.addEventListener("click", () => {
+    const kitten = document.getElementById('picture-2')
+    console.log()
+    const newChamp = document.getElementById('img-2')
+    const champ = document.getElementById('img-1')
+    champ.replaceWith(newChamp)
+    newChamp.setAttribute('id', 'img-1')
+    kitten.remove()
+    rightkittenPic();
   })
 
 }
 
+const music = () => {
+  const animated = document.getElementById('picture-2');
+  console.log(animated)
+    animated.addEventListener('animationstart', ()=>{
+      let audio = document.createElement('audio')
+      audio.controls = true;
+      audio.autoplay = true;
 
-const commentList = () =>{
-  const div = document.createElement('div');
-  document.body.append(div)
-  div.setAttribute('id', 'comment-box');
-  const list = document.createElement('ul');
-  list.setAttribute('id', 'comment-list')
-  div.append(list)
 
+      let source = document.createElement('source')
+      source.setAttribute('src','./SLOWER-TEMPO2019-12-11_-_Retro_Platforming_-_David_Fesliyan.mp3')
+      source.setAttribute('type', 'audio/mpeg')
+      audio.append(source)
+      audio.volume = .3;
+      document.body.append(audio)
+      audio.setAttribute('id', 'audio')
 
+})
 }
 
+
+const start = async () => {
+  const button = document.createElement('button')
+  button.innerText = 'START';
+  button.setAttribute('class', 'start-button')
+   document.body.append(button)
+    button.addEventListener('click', async ()=> {
+     await leftkittenPic();
+     await rightkittenPic();
+          fight();
+          music();
+          divBox();
+          button.remove()
+
+  })
+}
 
 
 
@@ -113,9 +181,8 @@ const commentList = () =>{
 
 window.onload = async () => {
         titleLayout();
-  await kittenPic();
-        divBox();
-        commentBar();
-        commentList();
+        theOctagon();
+  await start();
+
 
 }
