@@ -6,10 +6,13 @@ const titleLayout = () =>{
   document.body.append(h1)
   h1.setAttribute('id', 'title-text')
 }
-
-const kittenPic = async () => {
+const fetchKitty = async () => {
   const pic = await fetch("https://api.thecatapi.com/v1/images/search")
-  const url = await pic.json()
+  return pic
+}
+const kittenPic = async () => {
+  const pic = await fetchKitty();
+  const url =  await pic.json()
   const img = document.createElement('input')
   const div = document.createElement('div')
   div.setAttribute('id', 'picture')
@@ -17,12 +20,14 @@ const kittenPic = async () => {
   img.type = 'image'
   img.src = url[0].url
   const picDiv = document.getElementById('picture')
-  console.log(picDiv)
+  // console.log(picDiv)
   picDiv.append(img)
 
 
-  img.addEventListener('click', () =>{
-    window.location.reload();
+  img.addEventListener('click', async () =>{
+    const pic = await fetchKitty();
+    const url =  await pic.json();
+    img.src = url[0].url;
 })
 }
 
@@ -57,6 +62,7 @@ const divBox = async () => {
   downVote.addEventListener("click", () => {
     score--
     scoreBar.innerText = `Popularity Score: ${score}`
+    score <= -10? window.alert("All kitties deserve love!"):null;
   })
 }
 
@@ -83,6 +89,7 @@ const commentBar = () => {
     const newComment = input.value
     newItem.innerText = newComment
     list.append(newItem)
+    input.value = ''
   })
 
 }
@@ -110,4 +117,5 @@ window.onload = async () => {
         divBox();
         commentBar();
         commentList();
+
 }
