@@ -360,13 +360,16 @@ body {
   text-align: center;
   z-index: -3;
 }
+.start-button:hover{
+  cursor: pointer;
+}
 h2{
   content: "insert coin";
   font-family: courier, monospace;
   font-size: 30px;
   font-weight: 300;
   padding-left: 10px;
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
   animation: opacity 2s infinite;
   color: whitesmoke;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
@@ -459,6 +462,7 @@ h2{
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     width: 100%;
     max-width: 250px;
+    pointer-events: none;
    }
    #sunbox{
     width: 250px;
