@@ -15,28 +15,33 @@ const fetchKitty = async () => {
   const pic = await fetch("https://api.thecatapi.com/v1/images/search")
   return pic
 }
-
-
+const leftListener = (cat) =>{
+  cat.addEventListener("click", () => {
+    const kitten = document.getElementById('picture-2')
+    kitten.remove()
+    rightkittenPic();
+  })
+}
+let champCount = 1
 const leftkittenPic = async () => {
   const pic = await fetchKitty();
   const url =  await pic.json()
   const img = document.createElement('input')
   const div = document.createElement('div')
+  // const champ = localStorage.getItem('currentChamp')
+
   div.setAttribute('id', 'picture-1')
   const octagon = document.getElementById('the-octagon')
   octagon.append(div)
   img.setAttribute('id', 'img-1')
   img.type = 'image'
-  img.src = url[0].url
+
+  img.src =url[0].url
   const picDiv = document.getElementById('picture-1')
   picDiv.append(img)
 
+  await leftListener(img)
 
-  img.addEventListener("click", () => {
-    const kitten = document.getElementById('picture-2')
-    kitten.remove()
-    rightkittenPic();
-  })
 }
 const rightkittenPic = async () => {
   const pic = await fetchKitty();
@@ -54,21 +59,23 @@ const rightkittenPic = async () => {
   picDiv.append(img)
 
 
-  img.addEventListener("click", () => {
+  img.addEventListener("click", loser =() => {
     const kitten = document.getElementById('picture-2')
-    console.log()
     const newChamp = document.getElementById('img-2')
     const champ = document.getElementById('img-1')
-    champ.replaceWith(newChamp)
+    newChamp.removeEventListener('click',loser)
+    leftListener(newChamp)
     newChamp.setAttribute('id', 'img-1')
+    champ.replaceWith(newChamp)
     kitten.remove()
+
     rightkittenPic();
   })
 }
 
 const fight = () => {
   const animated = document.getElementById('picture-1');
-  animated.addEventListener('animationend', ()=>{
+  animated.addEventListener('animationstart', ()=>{
     const fightText = document.createElement('p')
     const fightdiv = document.createElement('div')
     fightdiv.setAttribute('id','fight-div')
@@ -78,6 +85,7 @@ const fight = () => {
     fightdiv.append(fightText)
     let fight = document.getElementById('fight-text')
     fight.addEventListener('animationstart', ()=>{
+      setTimeout(()=> {
       let audio = document.createElement('audio')
       audio.controls = true;
       audio.autoplay = true;
@@ -89,9 +97,9 @@ const fight = () => {
       source.setAttribute('type', 'audio/mpeg')
       audio.append(source)
       document.body.append(audio)
-      audio.setAttribute('id', 'audio')
+      audio.setAttribute('id', 'fightFX')
 
-
+    },900)
     })
   }
   )
@@ -139,15 +147,15 @@ const divBox = async () => {
 
 const music = () => {
   const animated = document.getElementById('picture-2');
-  console.log(animated)
     animated.addEventListener('animationstart', ()=>{
       let audio = document.createElement('audio')
       audio.controls = true;
       audio.autoplay = true;
+      audio.loop = 'loop'
 
 
       let source = document.createElement('source')
-      source.setAttribute('src','./SLOWER-TEMPO2019-12-11_-_Retro_Platforming_-_David_Fesliyan.mp3')
+      source.setAttribute('src','./media/SLOWER-TEMPO2019-12-11_-_Retro_Platforming_-_David_Fesliyan.mp3')
       source.setAttribute('type', 'audio/mpeg')
       audio.append(source)
       audio.volume = .05;
@@ -157,13 +165,62 @@ const music = () => {
 })
 }
 
+const volSlider = () =>{
+  const container = document.createElement('div')
+  const slider = document.createElement('input')
+  const nav = document.getElementsByClassName('nav-bar')
+  container.append( slider)
+  nav[0].append(container)
+  slider.setAttribute('class', 'volume-slider');
+  slider.type = 'range';
+  slider.value = '10';
+  slider.min = '0';
+  slider.max = '100';
+
+}
+const navBar = async () => {
+  const footer = document.createElement('div');
+  footer.setAttribute('class', 'nav-bar')
+  const heroes = document.createElement('input')
+  const fallen = document.createElement('input')
+  document.body.append(footer)
+
+  heroes.type = 'image';
+  heroes.id = 'teleport'
+  heroes.src = './images/cyberlightningleft.png';
+  fallen.type = 'image';
+  fallen.id = 'teleport'
+  fallen.src = './images/cyberlightningright.png';
+  footer.append(heroes);
+  await volSlider();
+  footer.append(fallen)
+
+
+
+
+
+}
+const setVolume = (myVolume) => {
+  const myMedia = document.getElementById('audio');
+  const FX = document.getElementById('fightFX');
+
+  myMedia.volume = myVolume/100;
+  FX.volume = myVolume/100;
+}
+
+
+const volListener = () => {
+  const volSlider = document.querySelector('.volume-slider')
+  volSlider.addEventListener('input', ()=>{
+    setVolume(volSlider.value)
+  })
+
+}
 const start = async () => {
   const button = document.createElement('button' )
   button.innerText = 'START';
   button.setAttribute('class', 'start-button')
   const title = document.getElementById('title-text')
-  console.log(title)
-  // title.style.visibility = 'hidden'
 
 
    document.body.append(button)
@@ -172,24 +229,30 @@ const start = async () => {
       const text = document.getElementById('title-text')
       sunBox.setAttribute('id', 'sunbox')
       document.body.append(sunBox)
-      text.style.animation = '3s linear .1s 1 normal both riseup'
+      text.style.animation = '2s linear .1s 1 normal both riseup'
 
      await leftkittenPic();
      await rightkittenPic();
           fight();
           music();
           divBox();
-          // animation: 3s linear 1.8s 1 normal both riseup ;
           setTimeout(() => {
             button.remove();
             sunBox.remove()
           }, 3000)
+          navBar();
+          volListener();
+
   })
 }
 
 
 
+function saveGame(){
+  const champ = document.getElementById('img-1').url.toString()
+window.localStorage.setItem('current-champ', champ)
 
+}
 
 window.onload = async () => {
         titleLayout();

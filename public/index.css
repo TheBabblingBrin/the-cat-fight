@@ -1,7 +1,8 @@
 @font-face{
   font-family: 'vapor';
-  src: url(Streamster.ttf) ;
+  src: url(./media/Streamster.ttf) ;
 }
+@import url(https://fonts.googleapis.com/css?family=Raleway:500);
 
 html,
 body {
@@ -18,7 +19,8 @@ body {
  rgba(171, 36, 177, 1) 69%);
   z-index: -1;
 }
-#audio{
+#audio,
+#fightFX{
   visibility: hidden;
 }
 #comment-box::-webkit-scrollbar {
@@ -83,7 +85,7 @@ body {
 #comment-list li{
   margin: 10px;
   color:whitesmoke;
-  list-style-image: url('./vaporcat.png')
+  list-style-image: url('./images/vaporcat.png')
 }
 #fight-div{
   position: relative;
@@ -124,6 +126,18 @@ body {
   color: whitesmoke;
   margin: 10px 10px;
 }
+.nav-bar{
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 1;
+}
+
+
 
 #new-kitty{
   position: absolute;
@@ -150,7 +164,7 @@ body {
   position: relative;
   left:0px;
   box-shadow: rgba(195, 34,84, 0.4) -5px 0px, rgba(240, 46, 170, 0.3) -10px 0px, rgba(240, 46, 170, 0.2) -15px 0px, rgba(240, 46, 170, 0.1) -20px 0px, rgba(240, 46, 170, 0.05) -25px 0px;
-  animation: 3s cubic-bezier(.25,1.54,.88,0) 2s 1 normal both running slideinLeft;
+  animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinLeft;
 }
 #picture-2{
   /* grid-area: 1; */
@@ -158,7 +172,7 @@ body {
   right:0px;
   justify-self: flex-end;
   box-shadow: rgba(195, 34,84, 0.4) 5px 0px, rgba(240, 46, 170, 0.3) 10px 0px, rgba(240, 46, 170, 0.2) 15px 0px, rgba(240, 46, 170, 0.1) 20px 0px, rgba(240, 46, 170, 0.05) 25px 0px;
-  animation: 3s cubic-bezier(.25,1.54,.88,0) 1.8s 1 normal both running slideinRight;
+  animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.3s 1 normal both running slideinRight;
 
 }
 @keyframes slideinLeft {
@@ -219,9 +233,15 @@ body {
   position: absolute;
   top: 30%;
 }
+#teleport{
+  height: 30px;
+  width: 30px;
+  margin: 0 15px;
+}
+
 #title-text{
   font-family: 'vapor';
-
+ /* animation loads in js */
   letter-spacing: 6px;
   font-size: 270px;
   color: rgb(251,176,59);
@@ -248,19 +268,52 @@ body {
   width: 100px;
 }
 
-#defender:hover,
+/* #defender:hover,
 #challenger:hover {
   background-color:rgba(240, 46, 170, 0.3);
   background-position: 100% 0;
   -o-transition: all .4s ease-in-out;
   -webkit-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
-}
+} */
 
+#defender:hover,
+#challenger:hover,
+#teleport:hover
+{
+    -webkit-animation-name: hvr-pulse;
+    animation-name: hvr-pulse;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+@keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
+@-webkit-keyframes hvr-pulse {
+  25% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  75% {
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
+  }
+}
 .start-button{
   transform: translateY(0);
   transition: all 2s ease-out;
-  background-image: url(./sun.png);
+  background-image: url(./images/sun.png);
   background-size:cover;
   background-color: transparent;
   border-radius: 300px;
@@ -286,7 +339,7 @@ body {
 }
 
 #sunbox{
-  background-image: url(./sunbox.png);
+  background-image: url(./images/sunbox.png);
   background-size: auto;
   height: 374px;
   width: 459px;
@@ -311,5 +364,26 @@ body {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   font-family: 'Courier New', monospace;
   /* letter-spacing: 4px; */
+}
 
+
+.volume-slider {
+  width: 200px;
+  height: 10px;
+  -webkit-appearance: none;
+  background: rgba(26, 58, 130, 1) ;
+  outline: none;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 0 10px;
+}
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgb(251,176,59);
+  cursor: pointer;
+  border: 4px solid rgba(26, 58, 130, 1);
+  box-shadow: -407px 0 0 400px rgb(251,176,59);
 }
