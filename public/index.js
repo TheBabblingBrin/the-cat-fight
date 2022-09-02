@@ -2,9 +2,15 @@
 
 const titleLayout = () =>{
   const h1 = document.createElement("h1")
+  const overlay = document.createElement('div')
+  const glitch = document.createElement('div')
+
+  overlay.id ='overlay'
+  glitch.id = 'glitch'
   h1.innerText = "Cat Fight"
-  document.body.append(h1)
+  document.body.append(h1,overlay,glitch)
   h1.setAttribute('id', 'title-text')
+
 }
 const theOctagon = () =>{
   const div = document.createElement('div')
@@ -218,9 +224,11 @@ const volListener = () => {
 }
 const start = async () => {
   const button = document.createElement('button' )
-  button.innerText = 'START';
+  const coinText = document.createElement('h2')
+  coinText.innerText = 'insert coin'
+  button.append(coinText)
   button.setAttribute('class', 'start-button')
-  const title = document.getElementById('title-text')
+
 
 
    document.body.append(button)

@@ -17,7 +17,7 @@ body {
  /* 180deg, */
  rgba(26, 58, 130, 1) 37%,
  rgba(171, 36, 177, 1) 69%);
-  z-index: -1;
+  z-index: -4;
 }
 #audio,
 #fightFX{
@@ -99,6 +99,7 @@ body {
   font-size: 50px;
   color: rgb(251,176,59);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  pointer-events: none;
 }
 
 @keyframes textSize {
@@ -115,7 +116,17 @@ body {
   to{transform: rotate(360deg)}
 
 }
+#glitch {
+  clip-path: polygon(0 0, 100% 0, 100% .5em, 0 .5em);
+  animation: glitch 10s linear infinite;
+  transform: translatex(.1rem);
+ }
 
+ @keyframes glitch {
+  to {
+   clip-path: polygon(0 calc(100% - .5em), 100% calc(100% - .5em), 0 100%, 0 100%)
+  }
+ }
 #input{
   resize: none;
   background-color: rgba(240, 46, 170, 0.4);
@@ -147,6 +158,25 @@ body {
   border:none;
   z-index: 1;
 }
+
+#overlay,
+#glitch{
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  background-size: 5px 5px, 5px 5px;
+  background-position:  -1px -1px, -1px -1px;
+  background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  mix-blend-mode: difference;
+  pointer-events: none;
+  z-index: -2;
+ }
+
 #picture-1,
 #picture-2 {
   display: flex;
@@ -318,18 +348,38 @@ body {
   background-color: transparent;
   border-radius: 300px;
   border: 5px transparent;
-  font-family: 'vapor';
+  /* font-family: 'vapor'; */
   position: absolute;
   top:39%;
   bottom:61%;
   width: 400px;
   height: 400px;
   text-align: center;
-  letter-spacing: 6px;
-  font-size: 30px;
-  color: rgb(251,176,59);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  z-index: -3;
 }
+h2{
+  content: "insert coin";
+  font-family: courier, monospace;
+  font-size: 30px;
+  font-weight: 300;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  animation: opacity 2s infinite;
+  color: whitesmoke;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+}
+
+@keyframes opacity {
+  0% {
+      opacity: 1;
+  } 50% {
+      opacity: 0;
+  } 100% {
+      opacity: 1;
+  }
+}
+
 .start-button:focus{
   visibility: visible;
   opacity: 1;
@@ -345,7 +395,7 @@ body {
   width: 459px;
   position: absolute;
   bottom: 0;
-  z-index: 3;
+  z-index: -2;
 }
 #upper-div{
   display: flex;
