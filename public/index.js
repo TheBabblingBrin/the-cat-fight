@@ -93,7 +93,7 @@ const fight = () => {
 
 
       let source = document.createElement('source')
-      source.setAttribute('src','http://soundfxcenter.com/video-games/mortal-kombat-2/8d82b5_Mortal_Kombat_2_Fight_Sound_Effect.mp3')
+      source.setAttribute('src','./media/fightspeech.mp3')
       source.setAttribute('type', 'audio/mpeg')
       audio.append(source)
       document.body.append(audio)
