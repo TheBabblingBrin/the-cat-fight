@@ -238,7 +238,7 @@ const start = async () => {
       sunBox.setAttribute('id', 'sunbox')
       document.body.append(sunBox)
       text.style.animation = '2s linear .1s 1 normal both riseup'
-
+      
      await leftkittenPic();
      await rightkittenPic();
           fight();
