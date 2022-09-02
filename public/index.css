@@ -95,6 +95,8 @@ body {
 }
 #fight-text{
   animation: textSize 2s 1;
+  /* transition: all 2s ease-in; */
+  /* transform: scale(1.5); */
   font-family: 'vapor';
   letter-spacing: 6px;
   font-size: 50px;
@@ -448,6 +450,8 @@ h2{
 }
 
 @media screen and (max-width: 1000px) {
+
+
   #fight-div{
     position: relative;
     top:-50%;
@@ -489,11 +493,11 @@ h2{
     min-width: 200px;
    }
    #picture-1{
-    animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.3s 1 normal both running slideinRight;
+    animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinRight;
 
    }
    #picture-2{
-    animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinLeft;
+    animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.3s 1 normal both running slideinLeft;
 
    }
    #upper-div{

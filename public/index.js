@@ -81,7 +81,7 @@ const rightkittenPic = async () => {
 
 const fight = () => {
   const animated = document.getElementById('picture-1');
-  animated.addEventListener('animationstart', ()=>{
+  animated.addEventListener('animationstart', fx = ()=>{
     const fightText = document.createElement('p')
     const fightdiv = document.createElement('div')
     fightdiv.setAttribute('id','fight-div')
@@ -107,6 +107,7 @@ const fight = () => {
 
     },900)
     })
+    animated.removeEventListener('animationstart', fx)
   }
   )
 }
@@ -153,7 +154,7 @@ const divBox = async () => {
 
 const music = () => {
   const animated = document.getElementById('picture-2');
-    animated.addEventListener('animationstart', ()=>{
+    animated.addEventListener('animationstart', bgMusic = ()=>{
       let audio = document.createElement('audio')
       audio.controls = true;
       audio.autoplay = true;
@@ -167,7 +168,7 @@ const music = () => {
       audio.volume = .05;
       document.body.append(audio)
       audio.setAttribute('id', 'audio')
-
+      animated.removeEventListener('animationstart', bgMusic)
 })
 }
 
@@ -238,7 +239,7 @@ const start = async () => {
       sunBox.setAttribute('id', 'sunbox')
       document.body.append(sunBox)
       text.style.animation = '2s linear .1s 1 normal both riseup'
-      
+
      await leftkittenPic();
      await rightkittenPic();
           fight();
@@ -255,18 +256,18 @@ const start = async () => {
 }
 
 
-
-function saveGame(){
+const saveGame= () =>{
   const champ = document.getElementById('img-1').url.toString()
 window.localStorage.setItem('current-champ', champ)
 
 }
 
+
+
 window.onload = async () => {
         titleLayout();
         theOctagon();
   await start();
-
 
 
 }
