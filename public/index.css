@@ -360,7 +360,8 @@ body {
   text-align: center;
   z-index: -3;
 }
-.start-button:hover{
+input:hover,
+button:hover{
   cursor: pointer;
 }
 h2{
