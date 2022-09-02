@@ -239,6 +239,7 @@ const start = async () => {
       sunBox.setAttribute('id', 'sunbox')
       document.body.append(sunBox)
       text.style.animation = '2s linear .1s 1 normal both riseup'
+      theOctagon();
 
      await leftkittenPic();
      await rightkittenPic();
@@ -266,7 +267,6 @@ window.localStorage.setItem('current-champ', champ)
 
 window.onload = async () => {
         titleLayout();
-        theOctagon();
   await start();
 
 
