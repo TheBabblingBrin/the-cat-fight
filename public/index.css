@@ -91,12 +91,15 @@ body {
 #fight-div{
   position: relative;
   bottom: 350px;
-  animation: rotate 2s 1;
+  animation: rotate 1s 2;
+  animation-direction: alternate;
+  /* animation-delay: .3s; */
+
+
 }
 #fight-text{
   animation: textSize 2s 1;
-  /* transition: all 2s ease-in; */
-  /* transform: scale(1.5); */
+  /* animation-delay: .3s; */
   font-family: 'vapor';
   letter-spacing: 6px;
   font-size: 50px;
@@ -106,9 +109,11 @@ body {
 }
 
 @keyframes textSize {
-  0% {font-size: 10px}
-  50% {font-size: 60px;}
-  100% {font-size: 50px;}
+  0% {scale: .2;}
+  20% {scale: 1;}
+  90% {scale: 1;}
+
+  100% {scale: .2;}
   /* 0% {font-size: 50px} */
   ;
 }
@@ -116,7 +121,7 @@ body {
 @keyframes rotate {
 
   from {transform: rotate(0deg);}
-  to{transform: rotate(360deg)}
+  to{transform: rotate(330deg)}
 
 }
 #glitch {
@@ -274,11 +279,13 @@ body {
 
 #title-text{
   font-family: 'vapor';
- /* animation loads in js */
   letter-spacing: 6px;
   font-size: 270px;
   color: rgb(251,176,59);
+  position: relative;
+  top: 0%;
   text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+  pointer-events: none;
   z-index: 3;
 }
 @keyframes riseup {
@@ -409,6 +416,10 @@ h2{
   z-index: -2;
 }
 #upper-div{
+  position: absolute;
+  /* top:0%; */
+  top:80%;
+  bottom: 15%;
   display: flex;
   width: 80%;
 }
@@ -454,7 +465,7 @@ h2{
 
   #fight-div{
     position: relative;
-    top:-40%;
+    top:10%;
 
   }
    .start-button{
@@ -488,6 +499,7 @@ h2{
    #picture-2{
     width: 40%;
     height: fit-content;
+    width: fit-content;
     max-width: 300px;
     max-height: 400px;
    }
@@ -512,7 +524,7 @@ h2{
       transform: translateX(0);
     }
     100% {
-      transform: translateX(80%);
+      transform: translateX(40%);
     }
   }
   @keyframes slideinRight {
@@ -520,15 +532,20 @@ h2{
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-80%);
+      transform: translateX(-40%);
     }
   }
 }
-@media screen and (max-height: 1100px) {
+@media screen and (min-height: 1100px) {
 
 
   #fight-div{
     position: relative;
     top:-500px;
+  }
+  #title-text{
+    /* font-size: 300%; */
+    position: relative;
+    top: 10%;
   }
 }

@@ -79,9 +79,9 @@ const rightkittenPic = async () => {
   })
 }
 
-const fight = () => {
+const fight =  () => {
   const animated = document.getElementById('picture-1');
-  animated.addEventListener('animationstart', fx = ()=>{
+  animated.addEventListener('animationstart', fx = async()=>{
     const fightText = document.createElement('p')
     const fightdiv = document.createElement('div')
     fightdiv.setAttribute('id','fight-div')
@@ -91,12 +91,11 @@ const fight = () => {
     fightdiv.append(fightText)
     let fight = document.getElementById('fight-text')
     fight.addEventListener('animationstart', ()=>{
-      setTimeout(()=> {
+     setTimeout(()=> {
       let audio = document.createElement('audio')
       audio.controls = true;
       audio.autoplay = true;
       audio.volume = .1;
-
 
       let source = document.createElement('source')
       source.setAttribute('src','./media/fightspeech.mp3')
@@ -105,9 +104,22 @@ const fight = () => {
       document.body.append(audio)
       audio.setAttribute('id', 'fightFX')
 
-    },900)
+      fight.style.animationPlayState = 'paused'
+      fightdiv.style.animationPlayState = 'paused'
+
+      setTimeout(()=>{
+        fight.style.animationPlayState = 'running'
+        fightdiv.style.animationPlayState = 'running'
+
+      },800)
+
+    },1000)
     })
     animated.removeEventListener('animationstart', fx)
+    fight.addEventListener('animationend', ()=>{
+      fight.remove();
+    })
+
   }
   )
 }
@@ -238,7 +250,9 @@ const start = async () => {
       const text = document.getElementById('title-text')
       sunBox.setAttribute('id', 'sunbox')
       document.body.append(sunBox)
-      text.style.animation = '2s linear .1s 1 normal both riseup'
+      const mediaQuery = window.matchMedia('(max-width: 1660px)')
+      mediaQuery.matches? null:
+      text.style.animation = '2s linear .1s 1 normal both riseup';
       theOctagon();
 
      await leftkittenPic();
