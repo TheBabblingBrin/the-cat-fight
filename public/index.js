@@ -64,6 +64,15 @@ const rightkittenPic = async () => {
   // console.log(picDiv)
   picDiv.append(img)
 
+  picDiv.addEventListener('animationstart', ()=>{
+    const glitch = document.getElementById('glitch')
+
+    setTimeout(()=>{
+      // glitch.style.animationPlayState = 'running'
+      glitch.style.visibility = 'visible'
+    },800)
+  })
+
 
   img.addEventListener("click", loser =() => {
     const kitten = document.getElementById('picture-2')
@@ -248,6 +257,9 @@ const start = async () => {
     button.addEventListener('click', async ()=> {
       const sunBox = document.createElement('div')
       const text = document.getElementById('title-text')
+      const glitch = document.getElementById('glitch')
+      // glitch.style.animationPlayState = 'paused'
+      glitch.style.visibility = 'hidden'
       sunBox.setAttribute('id', 'sunbox')
       document.body.append(sunBox)
       const mediaQuery = window.matchMedia('(max-width: 1660px)')
