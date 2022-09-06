@@ -64,7 +64,7 @@ const rightkittenPic = async () => {
   // console.log(picDiv)
   picDiv.append(img)
 
-  picDiv.addEventListener('animationstart', ()=>{
+  picDiv.addEventListener('animationend', ()=>{
     const glitch = document.getElementById('glitch')
 
     setTimeout(()=>{
@@ -90,6 +90,10 @@ const rightkittenPic = async () => {
 
 const fight =  () => {
   const animated = document.getElementById('picture-1');
+  const animated2 = document.getElementById('picture-2');
+  animated.style.animationPlayState = 'running'
+  animated2.style.animationPlayState = 'running'
+
   animated.addEventListener('animationstart', fx = async()=>{
     const fightText = document.createElement('p')
     const fightdiv = document.createElement('div')
@@ -267,8 +271,8 @@ const start = async () => {
       text.style.animation = '2s linear .1s 1 normal both riseup';
       theOctagon();
 
-     await leftkittenPic();
-     await rightkittenPic();
+      await leftkittenPic();
+      await rightkittenPic();
           fight();
           music();
           divBox();

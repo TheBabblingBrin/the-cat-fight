@@ -204,6 +204,7 @@ body {
   left:0px;
   box-shadow: rgba(195, 34,84, 0.4) -5px 0px, rgba(240, 46, 170, 0.3) -10px 0px, rgba(240, 46, 170, 0.2) -15px 0px, rgba(240, 46, 170, 0.1) -20px 0px, rgba(240, 46, 170, 0.05) -25px 0px;
   animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinLeft;
+  animation-play-state: paused;
 }
 #picture-2{
   /* grid-area: 1; */
@@ -211,7 +212,8 @@ body {
   right:0px;
   justify-self: flex-end;
   box-shadow: rgba(195, 34,84, 0.4) 5px 0px, rgba(240, 46, 170, 0.3) 10px 0px, rgba(240, 46, 170, 0.2) 15px 0px, rgba(240, 46, 170, 0.1) 20px 0px, rgba(240, 46, 170, 0.05) 25px 0px;
-  animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.3s 1 normal both running slideinRight;
+  animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinRight;
+  animation-play-state: paused;
 
 }
 @keyframes slideinLeft {
@@ -353,20 +355,17 @@ body {
   }
 }
 .start-button{
-  transform: translateY(0);
-  transition: all 2s ease-out;
   background-image: url(./images/sun.png);
   background-size:cover;
   background-color: transparent;
   border-radius: 300px;
   border: 5px transparent;
-  /* font-family: 'vapor'; */
   position: absolute;
   top:39%;
   bottom:61%;
   height: 35%;
   width: 30%;
- max-width: 400px;
+  max-width: 400px;
   max-height: 400px;
   text-align: center;
   z-index: -3;
@@ -401,7 +400,7 @@ h2{
 .start-button:focus{
   visibility: visible;
   opacity: 1;
-  transform: translateY(500px) ;
+  transform: translateY(50vh) ;
   transition: all 2s ease-out;
   z-index: -4;
 }
