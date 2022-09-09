@@ -26,9 +26,27 @@ const leftListener = (cat) =>{
     const kitten = document.getElementById('picture-2')
     kitten.remove()
     rightkittenPic();
+    animateCats();
+
   })
 }
-let champCount = 1
+const animateCats = () =>{
+  const left = document.getElementById('picture-1');
+  const right = document.getElementById('picture-2');
+  left.classList.remove('animate-left')
+  right.classList.remove('animate-right')
+  left.classList.add('animate-left')
+  right.classList.add('animate-right')
+  // const aClass = document.querySelector('.animate-left')
+  // const delayStr = getComputedStyle(left).animationDelay
+  // const delay = parseFloat(delayStr.slice(0,3))*1000;
+  // left.addEventListener('animationstart', ()=>{
+  // setTimeout(()=>{
+  //   left.classList.remove('animate-left')
+  //   right.classList.remove('animate-right')
+
+  // },delay+500)})
+}
 const leftkittenPic = async () => {
   const pic = await fetchKitty();
   const url =  await pic.json()
@@ -45,6 +63,8 @@ const leftkittenPic = async () => {
   img.src =url[0].url
   const picDiv = document.getElementById('picture-1')
   picDiv.append(img)
+  const right = document.getElementById('picture-2');
+  right? animateCats(): null;
 
   await leftListener(img)
 
@@ -61,8 +81,8 @@ const rightkittenPic = async () => {
   img.type = 'image'
   img.src = url[0].url
   const picDiv = document.getElementById('picture-2')
-  // console.log(picDiv)
   picDiv.append(img)
+  animateCats();
 
   picDiv.addEventListener('animationend', ()=>{
     const glitch = document.getElementById('glitch')
@@ -70,6 +90,7 @@ const rightkittenPic = async () => {
     setTimeout(()=>{
       // glitch.style.animationPlayState = 'running'
       glitch.style.visibility = 'visible'
+
     },800)
   })
 
@@ -83,18 +104,19 @@ const rightkittenPic = async () => {
     newChamp.setAttribute('id', 'img-1')
     champ.replaceWith(newChamp)
     kitten.remove()
+    rightkittenPic()
 
-    rightkittenPic();
+
   })
 }
 
-const fight =  () => {
-  const animated = document.getElementById('picture-1');
-  const animated2 = document.getElementById('picture-2');
-  animated.style.animationPlayState = 'running'
-  animated2.style.animationPlayState = 'running'
-
-  animated.addEventListener('animationstart', fx = async()=>{
+const fight = async () => {
+  const left = document.getElementById('picture-1');
+  const right = document.getElementById('picture-2');
+  // left.classList.add('animate-left')
+  // right.classList.add('animate-right')
+  animateCats();
+  left.addEventListener('animationstart', fx = async()=>{
     const fightText = document.createElement('p')
     const fightdiv = document.createElement('div')
     fightdiv.setAttribute('id','fight-div')
@@ -128,9 +150,11 @@ const fight =  () => {
 
     },1000)
     })
-    animated.removeEventListener('animationstart', fx)
+   left.removeEventListener('animationstart', fx)
     fight.addEventListener('animationend', ()=>{
       fight.remove();
+      // left.classList.remove('animate-left')
+      // right.classList.remove('animate-right')
     })
 
   }
@@ -166,7 +190,6 @@ const divBox = async () => {
   })
   challenger.addEventListener("click", () => {
     const kitten = document.getElementById('picture-2')
-    console.log()
     const newChamp = document.getElementById('img-2')
     const champ = document.getElementById('img-1')
     champ.replaceWith(newChamp)

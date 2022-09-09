@@ -203,8 +203,8 @@ body {
   position: relative;
   left:0px;
   box-shadow: rgba(195, 34,84, 0.4) -5px 0px, rgba(240, 46, 170, 0.3) -10px 0px, rgba(240, 46, 170, 0.2) -15px 0px, rgba(240, 46, 170, 0.1) -20px 0px, rgba(240, 46, 170, 0.05) -25px 0px;
-  animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinLeft;
-  animation-play-state: paused;
+  /* animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinLeft;
+  animation-play-state: paused; */
 }
 #picture-2{
   /* grid-area: 1; */
@@ -212,8 +212,19 @@ body {
   right:0px;
   justify-self: flex-end;
   box-shadow: rgba(195, 34,84, 0.4) 5px 0px, rgba(240, 46, 170, 0.3) 10px 0px, rgba(240, 46, 170, 0.2) 15px 0px, rgba(240, 46, 170, 0.1) 20px 0px, rgba(240, 46, 170, 0.05) 25px 0px;
+  /* animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinRight;
+  animation-play-state: paused; */
+
+}
+.animate-left{
+  animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinLeft;
+  animation-delay: 1.5s;
+
+}
+
+.animate-right{
   animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinRight;
-  animation-play-state: paused;
+  animation-delay: 1.5s;
 
 }
 @keyframes slideinLeft {
@@ -476,11 +487,12 @@ h2{
    #title-text{
     display: flex;
     justify-content: center;
+    position: absolute;
+    top: 0;
     font-size: 50px;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     width: 100%;
     max-width: 250px;
-    pointer-events: none;
    }
    #sunbox{
     width: 250px;
@@ -514,7 +526,7 @@ h2{
 
    }
    #picture-2{
-    animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.3s 1 normal both running slideinLeft;
+    animation: 1.5s cubic-bezier(.25,1.54,.88,0) 1.5s 1 normal both running slideinLeft;
 
    }
    #upper-div{
@@ -538,16 +550,10 @@ h2{
     }
   }
 }
-@media screen and (min-height: 1100px) {
+/* @media screen and (min-height: 1100px) {
 
-
-  /* #fight-div{
-    position: relative;
-    top:-500px;
-  } */
   #title-text{
-    /* font-size: 300%; */
     position: relative;
-    top: 10%;
+    top: 20%;
   }
-}
+} */
