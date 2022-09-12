@@ -52,14 +52,11 @@ const leftkittenPic = async () => {
   const url =  await pic.json()
   const img = document.createElement('input')
   const div = document.createElement('div')
-  // const champ = localStorage.getItem('currentChamp')
-
   div.setAttribute('id', 'picture-1')
   const octagon = document.getElementById('the-octagon')
   octagon.append(div)
   img.setAttribute('id', 'img-1')
   img.type = 'image'
-
   img.src =url[0].url
   const picDiv = document.getElementById('picture-1')
   picDiv.append(img)
@@ -249,10 +246,6 @@ const navBar = async () => {
   footer.append(heroes);
   await volSlider();
   footer.append(fallen)
-
-
-
-
 
 }
 const setVolume = (myVolume) => {
