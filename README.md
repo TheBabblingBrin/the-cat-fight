@@ -5,7 +5,7 @@ https://cat-fights-wooh.netlify.app/
 
 
 #Features currently planned
-Thematic Art Work
-Turn based battle system
-History of past battles and defeated foes
-Combat log
+-Thematic Art Work
+-Turn based battle system
+-History of past battles and defeated foes
+-Combat log
